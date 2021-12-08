@@ -15,17 +15,19 @@ String::String(const char* characters)
 
 String::String(const String& other)
 {
+	
 	unsigned int length = other.getLength();
 	this->charString = new char[(unsigned long long)length + 1];
-	memcpy(this->charString, other.c_str(), length + 1);
+	memcpy(this->charString, other.c_str(), length + 1);	
 }
 
 
 String::String(String&& other) noexcept
-{
+{	
 	unsigned int length = other.getLength();
 	this->charString = new char[(unsigned long long)length + 1];
 	memcpy(this->charString, other.c_str(), length + 1);
+	
 }
 
 String::~String()
@@ -37,6 +39,7 @@ String& String::operator=(const String& other)
 {
 	if (this != &other)
 	{
+		delete[] this->charString;
 		unsigned int length = other.getLength();
 		this->charString = new char[(unsigned long long)length + 1];
 		memcpy(this->charString, other.c_str(), length + 1);
@@ -49,6 +52,7 @@ String& String::operator=(String&& other) noexcept
 {
 	if (this != &other)
 	{
+		delete[] this->charString;
 		unsigned int length = other.getLength();
 		this->charString = new char[(unsigned long long)length + 1];
 		memcpy(this->charString, other.c_str(), length + 1);

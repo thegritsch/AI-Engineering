@@ -2,10 +2,15 @@
 //
 #include <MyString.h>
 #include <iostream>
+#include <UniquePtr.h>
 
 using namespace MystringLib;
 
-int main()
+struct Entity {
+    int id = -1;
+};
+
+void Testfunction()
 {
     //Teil 1
     String myString("Hello");
@@ -29,6 +34,22 @@ int main()
     const String test("Hello World");
     for (String::Iterator it = test.begin(); it != test.end(); ++it) { std::cout << *it << '\n'; }
     std::cout << (std::find(test.begin(), test.end(), 'W') != test.end()) << '\n';
+
+    
+
+
+
+    UniquePtr<Entity> entityPointer(new Entity);
+    UniquePtr<String> stringPointer(new String("Hello World"));
+
+    std::cout << entityPointer->id;
+    std::cout << stringPointer->c_str();
+}
+
+int main()
+{
+    while (true)
+        Testfunction();
 }
 
 // Programm ausführen: STRG+F5 oder Menüeintrag "Debuggen" > "Starten ohne Debuggen starten"

@@ -38,16 +38,20 @@ namespace MystringLib
 		private:
 			pointer m_pointer;
 		};
-
+		//Constructor from char array
 		String(const char* characters);
+		//copy constructor
 		String(const String& other);
+		//move constructor
 		String(String&& other) noexcept;
+		//move assignment operator
 		String& operator=(String&& other) noexcept;
 		String& operator=(const String& other);
 		char* c_str() const;
 		unsigned int getLength() const;
 		void concatenate(const String other);
 		void concatenate(const char* characters);
+		//internally uses concatenate
 		String& operator+=(const String& rhs);
 		String& operator+=(const char*& rhs);
 		String  operator+(const String& other);
@@ -60,6 +64,7 @@ namespace MystringLib
 				++temp;
 			return temp;
 		}
+		//conversion function to char*
 		operator const char* () const{ return charString; }
 		~String();
 	private:

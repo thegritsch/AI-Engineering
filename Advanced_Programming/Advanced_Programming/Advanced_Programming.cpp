@@ -1,6 +1,5 @@
 // these methods shall calculate and print the convex hull of a set of points.
 #include <iostream>
-#include <stack>
 #include <stdlib.h>
 #include <vector>
 #include <math.h>
@@ -49,10 +48,10 @@ void FindHull(vector<Point>& points, Point& A, Point& B) {
             idx = i;
         }
     }
-
-
-
-
+    
+    
+    
+    
 
     vector<Point> R, T;
     for (unsigned int i = 0; i < points.size(); i++) {
@@ -70,30 +69,30 @@ void FindHull(vector<Point>& points, Point& A, Point& B) {
     FindHull(R, A, points[idx]);
     ret.push_back(points[idx]);
     FindHull(T, points[idx], B);
-
+    
 
     return;
 }
 
 
 
-vector<Point> convexHull(Point* pointsarr, int size) {
+void convexHull(Point* pointsarr, int size) {
 
     vector<Point> points;
     for (int i = 0; i < size; i++)
         points.push_back(pointsarr[i]);
     // find the convex hull; use QuickHull algorithm
     if (points.size() <= 1)
-        return points;
-
+        return;
+    
     // find the left most and right most two points
     sort(points.begin(), points.end(), mycmp);
     ret.push_back(points[0]);
-
+    
 
     // test whether a point on the left side right side or on the line
     vector<Point> Left, Right, Online;
-    for (unsigned int i = 1; i < points.size() - 1; i++) {
+    for (unsigned int i = 1; i < unsigned int(points.size()) - 1; i++) {
         int tmp = testSide(points[0], points.back(), points[i]);
         if (tmp < 0)
             Right.push_back(points[i]);
@@ -110,19 +109,19 @@ vector<Point> convexHull(Point* pointsarr, int size) {
     FindHull(Left, points[0], points.back());
     ret.push_back(points.back());
     FindHull(Right, points.back(), points[0]);
-    for (unsigned int i = 0; i < ret.size(); i++)
+    for (unsigned int i = 0; i < unsigned int(ret.size()); i++)
         cout << "(" << ret[i].x << ", " << ret[i].y << ")\n";
-    return ret;
+    return ;
 }
 
-int main()
-{
-    Point points[] = { {1, 3}, {1, 7}, {2, 1}, {2, 4},
-                      {1, 5}, {7, 3}, {2, 4}, {5, 0},
-                      {0, 2}, {8, 5}, {1, 4}, {6, 5},
-                      {1, 5}, {7, 2}, {2, 4}, {6, 1},
-                      {2, 0}, {1, 0}, {3, 2}, {3, 4} };
-    int n = sizeof(points) / sizeof(points[0]);
-    convexHull(points, n);
-    return 0;
-}
+//int main()
+//{
+//    Point points[] = { {1, 3}, {1, 7}, {2, 1}, {2, 4},
+//                      {1, 5}, {7, 3}, {2, 4}, {5, 0},
+//                      {0, 2}, {8, 5}, {1, 4}, {6, 5},
+//                      {1, 5}, {7, 2}, {2, 4}, {6, 1},
+//                      {2, 0}, {1, 0}, {3, 2}, {3, 4} };
+//    int n = sizeof(points) / sizeof(points[0]);
+//    convexHull(points, n);
+//    return 0;
+//}
